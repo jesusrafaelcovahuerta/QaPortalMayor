@@ -1,0 +1,1 @@
+[23-Feb-2023 14:33:45 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 20480 bytes) in /home/admin/app.conectamayor.cl/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php on line 443

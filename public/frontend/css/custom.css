@@ -1,0 +1,102 @@
+.boton {
+  border-bottom: 5px solid #000;
+  border-radius: 12px;
+  box-shadow: 6px 6px 6px #999;
+  color: #fff !important;
+  cursor: pointer;
+  display: block;  
+  font-family: 'Raleway', Arial, Helvetica;
+  font-size: 28px;
+  height: 200px;
+  margin: 10px auto;
+  padding: 10px 0px;
+  text-align: center;
+  transition: all 0.2s ease 0s;
+  width: 100%;
+}
+.boton:hover{
+  background: rgb(198, 27, 27);
+  border-bottom: 5px solid #ed3f3f;
+}
+.boton:active {
+  box-shadow: 2px 2px 2px #777, 0px 0px 35px 0px #00b7f8;
+  border-bottom:1px solid #0045A6;
+  text-shadow:  0px 0px 5px #fff, 0px 0px 5px #fff;
+  transform: translateY(4px);
+  transition: all 0.1s ease 0s;
+  margin: 80px auto 76px auto;
+}
+
+i.home_icon_size  {
+  font-size: 80px !important;
+}
+
+.boton2 {
+  border-bottom: 5px solid #000;
+  border-radius: 12px;
+  box-shadow: 6px 6px 6px #999;
+  color: #fff !important;
+  cursor: pointer;
+  display: block;  
+  font-family: 'Raleway', Arial, Helvetica;
+  font-size: 20px;
+  height: 150px;
+  margin: 10px auto;
+  padding: 10px 0px;
+  text-align: center;
+  transition: all 0.2s ease 0s;
+  width: 100%;
+}
+.boton2:hover{
+  background: rgb(198, 27, 27);
+  border-bottom: 5px solid #ed3f3f;
+}
+.boton2:active {
+  box-shadow: 2px 2px 2px #777, 0px 0px 35px 0px #00b7f8;
+  border-bottom:1px solid #0045A6;
+  text-shadow:  0px 0px 5px #fff, 0px 0px 5px #fff;
+  transform: translateY(4px);
+  transition: all 0.1s ease 0s;
+  margin: 80px auto 76px auto;
+}
+
+.botonhighlight {
+  border-bottom: 10px solid #000;
+  border-radius: 12px;
+  box-shadow: 6px 6px 6px #999;
+  color: #fff !important;
+  cursor: pointer;
+  display: block;  
+  font-family: 'Raleway', Arial, Helvetica;
+  font-size: 20px;
+  font-weight: bold;
+  height: 150px;
+  margin: 10px auto;
+  padding: 10px 0px;
+  text-align: center;
+  transition: all 0.2s ease 0s;
+  width: 100%;
+}
+.botonhighlight:hover{
+  background: rgb(198, 27, 27);
+  border-bottom: 5px solid #ed3f3f;
+}
+.botonhighlight:active {
+  box-shadow: 2px 2px 2px #777, 0px 0px 35px 0px #00b7f8;
+  border-bottom:1px solid #0045A6;
+  text-shadow:  0px 0px 5px #fff, 0px 0px 5px #fff;
+  transform: translateY(4px);
+  transition: all 0.1s ease 0s;
+  margin: 80px auto 76px auto;
+}
+
+i.home_icon_size2  {
+  font-size: 70px !important;
+}
+.question_poll_yes_no {
+  font-size: 25px !important;
+}
+
+.toolbar {
+  padding-top: 50px !important;
+}
