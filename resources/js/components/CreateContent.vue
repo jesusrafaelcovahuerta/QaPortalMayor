@@ -292,6 +292,7 @@
             "v-input-colorpicker": InputColorPicker
         },
         created() {
+            this.getRegions();
             this.getRols();
             this.storeAudit();
             this.getCategoryList();
@@ -303,9 +304,12 @@
                 color: '#0A2787',
                 loading: false,
                 category_posts: [],
+                region_posts: [],
+                commune_posts: [],
                 noFile: false,
                 noPdf: false,
                 form: {
+                    georeferencing_type_id: 2,
                     category_id: null,
                     type_id: null,
                     title: '',
