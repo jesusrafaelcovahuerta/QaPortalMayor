@@ -345,6 +345,43 @@
 
                     });
             },
+            getRegions() {
+                this.loading = true;
+
+                axios.get('/api/region')
+                .then(response => {
+                    this.region_posts = response.data.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            },
+            getCommunes() {
+                this.loading = true;
+
+                this.commune_posts = []
+
+                var region_data = String(this.form.region_id);
+
+                const region_ids = region_data.split(',');
+
+                for (const region_id of region_ids) {
+                    console.log(region_id)
+                    axios.get('/api/commune/' + region_id)
+                        .then(response => {
+                            this.commune_posts = this.commune_posts.concat(response.data.data);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                        .finally(() => {
+                            this.loading = false;
+                        });
+                }
+            },
             handleChange() {
                 this.form.color = this.color;
             },
