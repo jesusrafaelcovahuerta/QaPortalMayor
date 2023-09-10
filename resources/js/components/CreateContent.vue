@@ -205,7 +205,34 @@
                                         >
                                     </div>
                                 </div>
-
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <label for="exampleInputEmail1">¿Tiene Georeferenciación? <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.georeferencing_type_id"
+                                        >
+                                            <option :value="1">Si</option>
+                                            <option :value="2">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4" v-if="form.georeferencing_type_id == 1">
+                                        <label for="exampleInputEmail1">Región <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.region_id" multiple
+                                        @change="getCommunes"
+                                        >
+                                            <option :value="1000">Todas las regiones y comunas</option>
+                                            <option v-for="region_post in region_posts" :key="region_post.region_id" :value="region_post.region_id">{{ region_post.region }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4" v-if="form.georeferencing_type_id == 1">
+                                        <label for="exampleInputEmail1">Comuna</label>
+                                        <select class="form-control" id="exampleFormControlSelect1" v-model="form.commune_id"  multiple>
+                                            <option :value="null" v-if="commune_posts.length == 0">No ha seleccionado una región</option>
+                                            <option v-for="commune_post in commune_posts" :key="commune_post.commune_id" :value="commune_post.commune_id">{{ commune_post.commune }}</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6">
                                         <label for="exampleInputEmail1">¿El enlace de compartir de Whatsapp es personalizado? <h6 class="m-0 text-danger float-right">*</h6></label>
