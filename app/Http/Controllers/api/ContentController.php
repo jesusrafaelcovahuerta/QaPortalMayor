@@ -361,7 +361,7 @@ class ContentController extends ApiResponseController
             ->leftJoin('communes', 'communes.region_id', '=', 'content_regions.region_id')
             ->leftJoin('content_communes', 'content_communes.commune_id', '=', 'communes.commune_id')
             ->where('contents.status', 1)
-            ->where('contents.category_id', $request->section_id)
+            ->where('contents.category_id', $request->category_id)
             ->where('content_regions.region_id', $request->region)
             ->where('content_communes.commune_id', $request->commune)
             ->orderBy('contents.position', 'ASC')

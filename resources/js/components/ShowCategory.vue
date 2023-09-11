@@ -255,7 +255,7 @@
                     this.loading = true;
 
                     let formData = new FormData();
-                    formData.append('content_id',this.$route.params.id);
+                    formData.append('category_id',this.$route.params.id);
                     formData.append('region', this.region);
                     formData.append('commune', this.commune);
 
