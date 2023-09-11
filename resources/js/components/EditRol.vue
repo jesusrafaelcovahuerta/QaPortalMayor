@@ -95,7 +95,7 @@
             return {
                 errors: [],
                 permission_posts: [],
-                stored_rols: [],
+                stored_permissions: [],
                 loading: false,
                 noFile: false,
                 form: {
@@ -137,6 +137,19 @@
                     this.post = response.data.data;
                     
                     this.$set(this.form, 'rol', this.post.rol);
+                } catch (error) {
+                    console.error(error);
+                }
+
+                try {
+                    const response = await axios.get('/api/rol_permission/' + this.$route.params.id + '/edit?api_token='+App.apiToken);
+
+                    this.stored_permissions = response.data.data;
+
+                    this.loading = false;
+
+                    const selectedPermissionIds = this.stored_permissions.map(item => item.permission_id);
+                    this.form.permission_id = selectedPermissionIds;
                 } catch (error) {
                     console.error(error);
                 }
