@@ -207,7 +207,7 @@
                                         >
                                     </div>
                                 </div>
-                                <div class="form-group row" v-if="form.georeferencing_type_id == 1">
+                                <div class="form-group row">
                                     <div class="col-sm-4">
                                         <label for="exampleInputEmail1">¿Tiene Georeferenciación? <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <select class="form-control" id="exampleFormControlSelect1"
@@ -217,7 +217,7 @@
                                             <option :value="2">No</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4" v-if="form.georeferencing_type_id == 1">
                                         <label for="exampleInputEmail1">Región <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.region_id" multiple
@@ -227,7 +227,7 @@
                                             <option :selected="isSelectedRegion(region_post.region_id)" v-for="region_post in region_posts" :key="region_post.region_id" :value="region_post.region_id">{{ region_post.region }}</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4" v-if="form.georeferencing_type_id == 1">
                                         <label for="exampleInputEmail1">Comuna</label>
                                         <select class="form-control" id="exampleFormControlSelect1" v-model="form.commune_id"  multiple>
                                             <option :value="null" v-if="commune_posts.length == 0">No ha seleccionado una región</option>
