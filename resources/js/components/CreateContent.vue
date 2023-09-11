@@ -470,6 +470,7 @@
                     && this.form.start_date != ''
                     && this.form.position != ''
                     && this.color != ''
+                    & ((this.form.georeferencing_type_id == 2) || (this.form.georeferencing_type_id == 1 && this.form.region_id != null))
                 ) {
                     let formData = new FormData();
                     formData.append('category_id', this.form.category_id);
@@ -490,6 +491,9 @@
                     formData.append('iframe', this.form.iframe);
                     formData.append('video_type_id', this.form.video_type_id);
                     formData.append('icon_available_id', this.form.icon_available_id);
+                    formData.append('region_id', this.form.region_id);
+                    formData.append('commune_id', this.form.commune_id);
+                    formData.append('georeferencing_type_id', this.form.georeferencing_type_id);
 
                     axios.post('/api/content/store?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
@@ -564,6 +568,10 @@
 
                     if (this.form.end_date == '') {
                         this.errors.push('La fecha de termino es obligatoria.');
+                    }
+
+                    if (this.form.georeferencing_type_id == 1 && this.form.region_id == null) {
+                        this.errors.push('La región es obligatoria.');
                     }
 
                     if (this.form.whatsapp_type_id == 1 && this.form.whatsapp_description == '') {

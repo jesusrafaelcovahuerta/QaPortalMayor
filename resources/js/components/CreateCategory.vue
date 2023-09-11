@@ -476,6 +476,9 @@
                     if (this.form.section_id == null) {
                         this.errors.push('La sección es obligatoria.');
                     }
+                    if (this.form.georeferencing_type_id == 1 && this.form.region_id == null) {
+                        this.errors.push('La región es obligatoria.');
+                    }
                     if (this.form.color == '') {
                         this.errors.push('El color es obligatorio.');
                     }
