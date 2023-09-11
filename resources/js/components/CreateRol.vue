@@ -146,7 +146,7 @@
                     headers: { 'content-type': 'multipart/form-data' }
                 }
 
-                if(this.form.rol != '') {
+                if(this.form.rol != '' && this.form.permission_id != null) {
                     let formData = new FormData();
                     formData.append('rol', this.form.rol);
                     formData.append('permission_id', this.form.permission_id);
@@ -180,6 +180,10 @@
                     
                     if (this.form.rol == '') {
                         this.errors.push('El nombre del rol es obligatorio.');
+                    }
+
+                    if (this.form.permission_id == null) {
+                        this.errors.push('El permiso es obligatorio.');
                     }
 
                     window.scrollTo(0, 0);
