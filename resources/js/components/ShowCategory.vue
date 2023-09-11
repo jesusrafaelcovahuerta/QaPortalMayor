@@ -89,6 +89,8 @@
 <script>
     export default {
         created() {
+            this.getRegion();
+            this.getCommune();
             this.checkContentPoll();
             this.getPollQuestions();
             this.getPollQuantity();
@@ -98,6 +100,24 @@
             this.getPolls();
         },
         methods: {
+            async getRegion() {
+                try {
+                    const response = await axios.post('/api/region/find');
+
+                    this.region = response.data.data.region_id;
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+            async getCommune() {
+                try {
+                    const response = await axios.post('/api/commune/find');
+
+                    this.commune = response.data.data.commune_id;
+                } catch (error) {
+                    console.log(error);
+                }
+            },
             scrollContent(offset) {
                 const col8 = this.$refs.col8;
                 col8.scrollTop += offset;
