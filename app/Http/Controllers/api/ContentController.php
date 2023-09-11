@@ -271,7 +271,8 @@ class ContentController extends ApiResponseController
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   echo $id;
+        dier();
         $fileName = $request->icon;
 
         if($request->pdf != 'undefined') { 
