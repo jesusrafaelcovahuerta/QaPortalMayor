@@ -167,9 +167,7 @@
                 if(this.form.rol != '') {
                     let formData = new FormData();
                     formData.append('rol', this.form.rol);
-                    this.selectedPermissions = this.posts.filter(post => post.selected).map(post => post.permission_id);
-
-                    formData.append('permissions', this.selectedPermissions);
+                    formData.append('permissions', this.form.permission_id);
 
                     axios.post('/api/rol/update/'+ this.$route.params.id +'?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
