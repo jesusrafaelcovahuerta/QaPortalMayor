@@ -331,6 +331,8 @@
                     position: '',
                     whatsapp_type_id: 2,
                     whatsapp_description: '',
+                    region_id: null,
+                    commune_id: null,
                 }
             }
         },
