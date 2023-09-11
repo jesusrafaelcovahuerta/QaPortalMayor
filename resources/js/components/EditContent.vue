@@ -312,6 +312,8 @@
                 commune_posts: [],
                 noFile: false,
                 noPdf: false,
+                stored_regions: [],
+                stored_communes: [],
                 form: {
                     category_id: null,
                     type_id: null,
@@ -390,7 +392,7 @@
             },
             async getRegionsCommunes() {
                 try {
-                    const response = await axios.get('/api/category_region/' + this.$route.params.id + '/edit?api_token='+App.apiToken);
+                    const response = await axios.get('/api/content_region/' + this.$route.params.id + '/edit?api_token='+App.apiToken);
 
                     this.stored_regions = response.data.data;
 
@@ -403,7 +405,7 @@
                 }
 
                 try {
-                    const response = await axios.get('/api/category_commune/' + this.$route.params.id + '/edit?api_token='+App.apiToken);
+                    const response = await axios.get('/api/content_commune/' + this.$route.params.id + '/edit?api_token='+App.apiToken);
 
                     this.stored_communes = response.data.data;
 
