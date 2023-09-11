@@ -100,6 +100,7 @@
                 noFile: false,
                 form: {
                     rol: '',
+                    permission_id: null,
                 }
             }
         },
