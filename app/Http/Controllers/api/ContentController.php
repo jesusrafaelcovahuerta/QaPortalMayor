@@ -351,6 +351,7 @@ class ContentController extends ApiResponseController
 
                 $content_communes = ContentCommune::where('content_id', $id)->get();
                 echo $id;
+                echo 3333333333333333;
                 foreach ($content_communes as $content_commune) {
                     $content_commune_detail = ContentCommune::find($content_commune->content_commune_id);
                     $content_commune_detail->delete();
