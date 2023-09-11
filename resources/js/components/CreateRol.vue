@@ -51,14 +51,6 @@
                                             <option v-for="permission_post in permission_posts" :key="permission_post.permission_id" :value="permission_post.permission_id">{{ permission_post.permission }}</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-6">
-                                        
-                                        <label for="exampleInputEmail1">Permisos</label>
-                                        <div v-for="(post, index) in posts" v-bind:key="index">
-                                            <input type="checkbox" v-model="post.selected">
-                                            <label for="exampleInputEmail1">{{ post.permission }}</label>
-                                        </div>
-                                    </div>
                                 </div>
                                
                                 <button 

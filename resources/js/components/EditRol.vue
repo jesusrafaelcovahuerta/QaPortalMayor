@@ -44,11 +44,12 @@
                                         >
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="exampleInputEmail1">Permisos</label>
-                                        <div v-for="(post, index) in posts" :key="index">
-                                            <input type="checkbox" v-model="form.rol_id">
-                                            <label for="exampleInputEmail1">{{ post.permission }}</label>
-                                        </div>
+                                        <label for="exampleInputEmail1">Permisos <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.permission_id" multiple
+                                        >
+                                            <option v-for="permission_post in permission_posts" :key="permission_post.permission_id" :value="permission_post.permission_id">{{ permission_post.permission }}</option>
+                                        </select>
                                     </div>
                                 </div>
                                
@@ -93,9 +94,8 @@
         data: function() {
             return {
                 errors: [],
-                posts: [],
+                permission_posts: [],
                 stored_rols: [],
-                rol_permission_posts: [],
                 loading: false,
                 noFile: false,
                 form: {
@@ -109,7 +109,7 @@
 
                 axios.get('/api/permission?api_token='+App.apiToken)
                 .then(response => {
-                    this.posts = response.data.data;
+                    this.permission_posts = response.data.data;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -137,17 +137,6 @@
                     this.post = response.data.data;
                     
                     this.$set(this.form, 'rol', this.post.rol);
-                } catch (error) {
-                    console.error(error);
-                }
-
-                try {
-                    const response = await axios.get('/api/rol_permission/'+ this.$route.params.id +'/edit?api_token='+App.apiToken);
-
-                    this.stored_rols = response.data.data;
-                    
-                    const selectedRolIds = this.stored_rols.map(item => item.rol_id);
-                    this.form.rol_id = selectedRolIds;
                 } catch (error) {
                     console.error(error);
                 }
