@@ -576,6 +576,9 @@
                     formData.append('iframe', this.form.iframe);
                     formData.append('video_type_id', this.form.video_type_id);
                     formData.append('icon_available_id', this.form.icon_available_id);
+                    formData.append('region_id', this.form.region_id);
+                    formData.append('commune_id', this.form.commune_id);
+                    formData.append('georeferencing_type_id', this.form.georeferencing_type_id);
 
                     axios.post('/api/content/update/'+ this.$route.params.id +'?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
