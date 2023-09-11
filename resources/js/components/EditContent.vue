@@ -285,9 +285,9 @@
             "v-input-colorpicker": InputColorPicker
         },
         created() {
+            this.getPost();
             this.getRols();
             this.storeAudit();
-            this.getPost();
             this.getRegions();
             this.getCommunes();
             this.getCategoryList();
@@ -326,7 +326,7 @@
                     whatsapp_description: '',
                     region_id: null,
                     commune_id: null,
-                    georeferencing_type_id: 2,
+                    georeferencing_type_id: '',
                 }
             }
         },
