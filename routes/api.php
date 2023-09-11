@@ -68,7 +68,7 @@ Route::post('poll/store', 'api\PollController@store');
 Route::get('poll/list', 'api\PollController@list');
 Route::get('poll/destroy/{id}', 'api\PollController@destroy');
 Route::post('poll/question/{id}', 'api\PollController@question');
-Route::get('content/show/{id}', 'api\ContentController@show');
+Route::post('content/show', 'api\ContentController@show');
 Route::get('content/detail/{id}', 'api\ContentController@detail');
 Route::get('content/{id}/edit', 'api\ContentController@edit');
 Route::post('content/update/{id}', 'api\ContentController@update');
