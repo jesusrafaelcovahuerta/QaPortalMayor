@@ -342,6 +342,12 @@
             }
         },
         methods: {
+            isSelectedRegion(regionId) {
+                return this.stored_regions.some(item => item.region_id === regionId);
+            },
+            isSelectedCommune(communeId) {
+                return this.stored_communes.some(item => item.commune_id === communeId);
+            },
             getRegions() {
                 this.loading = true;
 
@@ -495,6 +501,34 @@
                     this.$set(this.form, 'commune_id', this.post.commune_id);
 
                     this.loading = false;
+                } catch (error) {
+                    console.error(error);
+                }
+                
+                try {
+                    const response = await axios.get('/api/category_region/' + this.$route.params.id + '/edit?api_token='+App.apiToken);
+
+                    this.stored_regions = response.data.data;
+
+                    this.loading = false;
+
+                    const selectedRegionIds = this.stored_regions.map(item => item.region_id);
+                    this.form.region_id = selectedRegionIds;
+                } catch (error) {
+                    console.error(error);
+                }
+
+                try {
+                    const response = await axios.get('/api/category_commune/' + this.$route.params.id + '/edit?api_token='+App.apiToken);
+
+                    this.stored_communes = response.data.data;
+
+                    this.loading = false;
+
+                    const selectedCommuneIds = this.stored_communes.map(item => item.commune_id);
+                    this.form.commune_id = selectedCommuneIds;
+
+                    console.log(this.form.commune_id);
                 } catch (error) {
                     console.error(error);
                 }
