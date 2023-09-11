@@ -339,7 +339,8 @@ class ContentController extends ApiResponseController
                     $pdfName
                 );
             }  
-
+            echo $request->georeferencing_type_id;
+            die();
             if($request->georeferencing_type_id == 1) {
                 $content_regions = ContentRegion::where('content_id', $content->content_id)->get();
 
