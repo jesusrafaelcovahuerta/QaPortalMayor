@@ -262,7 +262,7 @@
                     if (this.region == null && this.commune == null) {
                         this.posts = '';
                     } else {
-                        const response = await axios.post('/api/category/show', formData);
+                        const response = await axios.post('/api/content/show', formData);
                         this.posts = response.data.data;
                     }
                 } catch (error) {

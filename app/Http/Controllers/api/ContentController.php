@@ -370,7 +370,7 @@ class ContentController extends ApiResponseController
         if($content_qty > 0) {
             $contents = Content::select('contents.*')
                 ->distinct() // Agrega la función distinct()
-                ->leftJoin('content_region', 'content_regions.content_id', '=', 'contents.content_id')
+                ->leftJoin('content_regions', 'content_regions.content_id', '=', 'contents.content_id')
                 ->leftJoin('communes', 'communes.region_id', '=', 'content_regions.region_id')
                 ->leftJoin('content_communes', 'content_communes.commune_id', '=', 'communes.commune_id')
                 ->where('contents.status', 1)
@@ -382,7 +382,7 @@ class ContentController extends ApiResponseController
         } else {
             $contents = Content::select('categories.*')
                 ->distinct() // Agrega la función distinct()
-                ->leftJoin('content_regios', 'content_regions.content_id', '=', 'contents.content_id')
+                ->leftJoin('content_regions', 'content_regions.content_id', '=', 'contents.content_id')
                 ->leftJoin('communes', 'communes.region_id', '=', 'content_regions.region_id')
                 ->leftJoin('content_communes', 'content_communes.commune_id', '=', 'communes.commune_id')
                 ->where('contents.georeferencing_type_id', 2)
