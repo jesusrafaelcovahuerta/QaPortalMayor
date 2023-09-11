@@ -149,7 +149,7 @@
                 if(this.form.rol != '' && this.form.permission_id != null) {
                     let formData = new FormData();
                     formData.append('rol', this.form.rol);
-                    formData.append('permission_id', this.form.permission_id);
+                    formData.append('permissions', this.form.permission_id);
 
                     axios.post('/api/rol/store?api_token='+App.apiToken, formData, config)
                     .then(function (response) {

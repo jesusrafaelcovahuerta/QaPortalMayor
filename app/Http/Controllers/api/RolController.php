@@ -37,11 +37,8 @@ class RolController extends ApiResponseController
         $rol = new Rol();
         $rol->rol = $request->input('rol');
         $rol->save();
-    
-        // Obtén los permisos seleccionados (array)
-        $permissions = $request->input('permissions', []);
 
-        $permissions = explode(',', $permissions);
+        $permissions = explode(',', $request->permissions);
 
         for ($i=0; $i < count($permissions); $i++) { 
             $rol_permission = new RolPermission();
