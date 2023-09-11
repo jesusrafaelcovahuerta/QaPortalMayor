@@ -380,7 +380,7 @@ class ContentController extends ApiResponseController
                 ->orderBy('contents.position', 'ASC')
                 ->get();
         } else {
-            $contents = Content::select('categories.*')
+            $contents = Content::select('contents.*')
                 ->distinct() // Agrega la función distinct()
                 ->leftJoin('content_regions', 'content_regions.content_id', '=', 'contents.content_id')
                 ->leftJoin('communes', 'communes.region_id', '=', 'content_regions.region_id')
