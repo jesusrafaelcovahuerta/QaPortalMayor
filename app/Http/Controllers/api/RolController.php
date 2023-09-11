@@ -38,7 +38,7 @@ class RolController extends ApiResponseController
             $rol_permissions = RolPermission::where('rol_id', $id)->get();
 
             foreach ($rol_permissions as $rol_permission) {
-                $rol_permission_detail = RolPermission::find($rol_permission->rol_permission_id);
+                $rol_permission_detail = RolPermission::find($rol_permission->rol_id);
                 $rol_permission_detail->delete();
             }
 
