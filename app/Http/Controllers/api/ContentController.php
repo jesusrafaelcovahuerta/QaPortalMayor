@@ -8,6 +8,8 @@ use App\Http\Controllers\ApiResponseController;
 use App\Http\Controllers\Controller\api;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\ContentRegion;
+use App\ContentCommune;
 
 class ContentController extends ApiResponseController
 {
