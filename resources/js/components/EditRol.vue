@@ -115,44 +115,16 @@
                     console.log(error);
                 });
             },
-            getPost() {
-                axios.get('/api/rol/'+ this.$route.params.id +'/edit?api_token='+App.apiToken)
-                .then(response => {
+            async getPost() {
+                try {
+                    const response = await axios.get('/api/rol/'+ this.$route.params.id +'/edit?api_token='+App.apiToken);
+
                     this.post = response.data.data;
                     
                     this.$set(this.form, 'rol', this.post.rol);
-                });
-
-                axios.get('/api/permission?api_token='+App.apiToken)
-                .then(response => {
-                    this.posts = response.data.data;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
-
-                axios.get('/api/rol_permission/' + this.$route.params.id + '/edit?api_token=' + App.apiToken)
-                .then(response => {
-                    this.rol_permission_posts = response.data.data;
-
-                    this.posts.forEach(post => {
-                        const matchingPermission = this.rol_permission_posts.find(rolPermission => rolPermission.permission_id === post.permission_id);
-                        if (matchingPermission) {
-                            post.selected = true;
-                        } else {
-                             post.selected = false;
-                        }
-                    });
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(() => {
-                    this.loading = false;
-                });
+                } catch (error) {
+                    console.error(error);
+                }
             },
             onSubmit(e) {
                 this.loading = true; //the loading begin
