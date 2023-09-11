@@ -339,17 +339,16 @@ class ContentController extends ApiResponseController
                     $pdfName
                 );
             }  
-            echo $request->georeferencing_type_id;
-            die();
+
             if($request->georeferencing_type_id == 1) {
-                $content_regions = ContentRegion::where('content_id', $content->content_id)->get();
+                $content_regions = ContentRegion::where('content_id', $id)->get();
 
                 foreach ($content_regions as $content_region) {
                     $content_region_detail = ContentRegion::find($content_region->content_region_id);
                     $content_region_detail->delete();
                 }
 
-                $content_communes = ContentCommune::where('content_id', $content->content_id)->get();
+                $content_communes = ContentCommune::where('content_id', $id)->get();
 
                 foreach ($content_communes as $content_commune) {
                     $content_commune_detail = ContentCommune::find($content_commune->content_commune_id);
