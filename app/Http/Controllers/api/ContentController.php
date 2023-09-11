@@ -186,63 +186,65 @@ class ContentController extends ApiResponseController
                     $request->pdf,
                     $pdfName
                 );
-            }            
-        }
-
-        if($request->georeferencing_type_id == 1) {
-            if ($request->region_id != 1000) {
-                $region_data = explode(',', $request->region_id);
-
-                for ($i=0; $i < count($region_data); $i++) { 
-                    $category_region = new CategoryRegion();
-                    $category_region->category_id = $category->category_id;
-                    $category_region->region_id = trim($region_data[$i]);
-                    $category_region->save();
-                }
-    
-                if ($request->commune_id != 'null') {
-                    $commune_data = explode(',', $request->commune_id);
-    
-                    for ($i=0; $i < count($commune_data); $i++) { 
-                        $category_commune = new CategoryCommune();
-                        $category_commune->category_id = $category->category_id;
-                        $category_commune->commune_id = trim($commune_data[$i]);
-                        $category_commune->save();
-                    }
-                } else {
+            }          
+            
+            if($request->georeferencing_type_id == 1) {
+                if ($request->region_id != 1000) {
                     $region_data = explode(',', $request->region_id);
     
                     for ($i=0; $i < count($region_data); $i++) { 
-                        $communes = Commune::where('region_id', trim($region_data[$i]))->get();
-    
-                        foreach ($communes as $commune) {
-                            $category_commune = new CategoryCommune();
-                            $category_commune->category_id = $category->category_id;
-                            $category_commune->commune_id = $commune->commune_id;
-                            $category_commune->save();
+                        $content_region = new ContentRegion();
+                        $content_region->content_id = $content->content_id;
+                        $content_region->region_id = trim($region_data[$i]);
+                        $content_region->save();
+                    }
+        
+                    if ($request->commune_id != 'null') {
+                        $commune_data = explode(',', $request->commune_id);
+        
+                        for ($i=0; $i < count($commune_data); $i++) { 
+                            $content_commune = new ContentCommune();
+                            $content_commune->content_id = $content->content_id;
+                            $content_commune->commune_id = trim($commune_data[$i]);
+                            $content_commune->save();
+                        }
+                    } else {
+                        $region_data = explode(',', $request->region_id);
+        
+                        for ($i=0; $i < count($region_data); $i++) { 
+                            $communes = Commune::where('region_id', trim($region_data[$i]))->get();
+        
+                            foreach ($communes as $commune) {
+                                $content_commune = new ContentCommune();
+                                $content_commune->content_id = $content->content_id;
+                                $content_commune->commune_id = $commune->commune_id;
+                                $content_commune->save();
+                            }
                         }
                     }
-                }
-            } else {
-                $regions = Region::all();
-
-                foreach ($regions as $region) {
-                    $category_region = new SectionRegion();
-                    $category_region->category_id = $category->category_id;
-                    $category_region->region_id = $region->region_id;
-                    $category_region->save();
-                }
-
-                $communes = Commune::all();
-
-                foreach ($communes as $commune) {
-                    $category_commune = new CategoryCommune();
-                    $category_commune->category_id = $category->category_id;
-                    $category_commune->commune_id = $commune->commune_id;
-                    $category_commune->save();
+                } else {
+                    $regions = Region::all();
+    
+                    foreach ($regions as $region) {
+                        $content_region = new ContentRegion();
+                        $content_region->content_id = $content->content_id;
+                        $content_region->region_id = $region->region_id;
+                        $content_region->save();
+                    }
+    
+                    $communes = Commune::all();
+    
+                    foreach ($communes as $commune) {
+                        $content_commune = new ContentCommune();
+                        $content_commune->content_id = $content->content_id;
+                        $content_commune->commune_id = $commune->commune_id;
+                        $content_commune->save();
+                    }
                 }
             }
         }
+
+
 
 
         return $this->successResponse($content);
