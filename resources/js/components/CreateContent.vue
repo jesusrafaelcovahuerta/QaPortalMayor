@@ -294,6 +294,7 @@
         },
         created() {
             this.getRegions();
+            this.getCommunes();
             this.getRols();
             this.storeAudit();
             this.getCategoryList();
