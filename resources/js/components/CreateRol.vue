@@ -44,6 +44,15 @@
                                         >
                                     </div>
                                     <div class="col-sm-6">
+                                        <label for="exampleInputEmail1">Permisos <h6 class="m-0 text-danger float-right">*</h6></label>
+                                        <select class="form-control" id="exampleFormControlSelect1"
+                                        v-model="form.permission_id" multiple
+                                        >
+                                            <option v-for="permission_post in permission_posts" :key="permission_post.permission_id" :value="permission_post.permission_id">{{ permission_post.permission }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        
                                         <label for="exampleInputEmail1">Permisos</label>
                                         <div v-for="(post, index) in posts" v-bind:key="index">
                                             <input type="checkbox" v-model="post.selected">
@@ -92,11 +101,12 @@
         data: function() {
             return {
                 errors: [],
-                posts: [],
+                permission_posts: [],
                 loading: false,
                 noFile: false,
                 form: {
                     rol: '',
+                    permission_id: null,
                 }
             }
         },
@@ -118,7 +128,7 @@
 
                 axios.get('/api/permission?api_token='+App.apiToken)
                 .then(response => {
-                    this.posts = response.data.data;
+                    this.permission_posts = response.data.data;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -139,9 +149,7 @@
                 if(this.form.rol != '') {
                     let formData = new FormData();
                     formData.append('rol', this.form.rol);
-                    this.selectedPermissions = this.posts.filter(post => post.selected).map(post => post.permission_id);
-
-                    formData.append('permissions', this.selectedPermissions);
+                    formData.append('permission_id', this.form.permission_id);
 
                     axios.post('/api/rol/store?api_token='+App.apiToken, formData, config)
                     .then(function (response) {
