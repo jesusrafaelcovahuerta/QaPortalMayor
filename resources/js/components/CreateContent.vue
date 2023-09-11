@@ -338,11 +338,12 @@
         },
         methods: {
             async getRegionsCommunes() {
-                alert(2);
                 try {
                     const response = await axios.get('/api/category_region/' + this.form.section_id + '/edit?api_token='+App.apiToken);
 
                     this.stored_regions = response.data.data;
+
+                    console.log(this.stored_regions)
 
                     this.loading = false;
 
@@ -356,6 +357,8 @@
                     const response = await axios.get('/api/category_commune/' + this.form.section_id + '/edit?api_token='+App.apiToken);
 
                     this.stored_communes = response.data.data;
+
+                    console.log(this.stored_commune)
 
                     this.loading = false;
 
