@@ -398,7 +398,7 @@ class CategoryController extends ApiResponseController
      */
     public function show(Request $request)
     {
-        $categort_qty = Category::select('categories.*')
+        $category_qty = Category::select('categories.*')
             ->distinct() // Agrega la función distinct()
             ->leftJoin('category_regions', 'category_regions.category_id', '=', 'categories.category_id')
             ->leftJoin('communes', 'communes.region_id', '=', 'category_regions.region_id')
@@ -410,7 +410,7 @@ class CategoryController extends ApiResponseController
             ->orderBy('categories.position', 'ASC')
             ->count();
 
-        if($categort_qty > 0) {
+        if($category_qty > 0) {
             $categories = Category::select('categories.*')
                 ->distinct() // Agrega la función distinct()
                 ->leftJoin('category_regions', 'category_regions.category_id', '=', 'categories.category_id')

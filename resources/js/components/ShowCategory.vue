@@ -228,19 +228,28 @@
                     this.loading = false;
                 });
             },
-            getPosts() {
-                this.loading = true;
+            async getPosts() {
+                try {
+                    await this.getRegion(); // Espera a que se complete getRegion()
 
-                axios.get('/api/content/show/'+ this.$route.params.id)
-                .then(response => {
-                    this.posts = response.data.data;
-                })
-                .catch(function (error) {
+                    this.loading = true;
+
+                    let formData = new FormData();
+                    formData.append('content_id',this.$route.params.id);
+                    formData.append('region', this.region);
+                    formData.append('commune', this.commune);
+
+                    if (this.region == null && this.commune == null) {
+                        this.posts = '';
+                    } else {
+                        const response = await axios.post('/api/category/show', formData);
+                        this.posts = response.data.data;
+                    }
+                } catch (error) {
                     console.log(error);
-                })
-                .finally(() => {
+                } finally {
                     this.loading = false;
-                });
+                }
             }
         },
         data: function() {
