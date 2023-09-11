@@ -103,6 +103,20 @@
             }
         },
         methods: {
+            getPosts() {
+                this.loading = true;
+
+                axios.get('/api/permission?api_token='+App.apiToken)
+                .then(response => {
+                    this.posts = response.data.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+            },
             storeAudit() {
                 let formData = new FormData();
                 formData.append('page', 'Crear Rol');
