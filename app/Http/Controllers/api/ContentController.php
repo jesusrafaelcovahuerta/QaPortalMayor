@@ -342,6 +342,20 @@ class ContentController extends ApiResponseController
             }  
 
             if($request->georeferencing_type_id == 1) {
+                $content_regions = ContentRegion::where('content_id', $id)->get();
+
+                foreach ($content_regions as $content_region) {
+                    $content_region_detail = ContentRegion::find($content_region->content_region_id);
+                    $content_region_detail->delete();
+                }
+
+                $content_communes = CategoryCommune::where('category_id', $id)->get();
+
+                foreach ($content_communes as $content_commune) {
+                    $content_commune_detail = CategoryCommune::find($content_commune->content_commune_id);
+                    $content_commune_detail->delete();
+                }
+
                 if ($request->region_id != 1000) {
                     $region_data = explode(',', $request->region_id);
     
