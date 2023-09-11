@@ -271,8 +271,7 @@ class ContentController extends ApiResponseController
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   echo $id;
-        dier();
+    {  
         $fileName = $request->icon;
 
         if($request->pdf != 'undefined') { 
@@ -321,8 +320,6 @@ class ContentController extends ApiResponseController
         }
 
         if($content->save()) {
-            echo $id;
-            die();
             if($request->file != 'undefined') { 
                 Storage::disk('local')->putFileAs(
                     '/files',
@@ -344,16 +341,15 @@ class ContentController extends ApiResponseController
             }  
 
             if($request->georeferencing_type_id == 1) {
-                $content_regions = ContentRegion::where('content_id', $id)->get();
+                $content_regions = ContentRegion::where('content_id', $content->content_id)->get();
 
                 foreach ($content_regions as $content_region) {
                     $content_region_detail = ContentRegion::find($content_region->content_region_id);
                     $content_region_detail->delete();
                 }
 
-                $content_communes = ContentCommune::where('content_id', $id)->get();
-                echo $id;
-                echo 3333333333333333;
+                $content_communes = ContentCommune::where('content_id', $content->content_id)->get();
+
                 foreach ($content_communes as $content_commune) {
                     $content_commune_detail = ContentCommune::find($content_commune->content_commune_id);
                     $content_commune_detail->delete();
