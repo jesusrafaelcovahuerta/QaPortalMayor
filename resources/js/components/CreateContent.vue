@@ -41,6 +41,7 @@
                                         <label for="exampleInputEmail1">Sección - Categoría <h6 class="m-0 text-danger float-right">*</h6></label>
                                         <select class="form-control" id="exampleFormControlSelect1"
                                         v-model="form.category_id"
+                                        @change="getRegionsCommunes"
                                         >
                                             <option :value="null">-Seleccionar-</option>
                                             <option v-for="category_post in category_posts" :key="category_post.category_id" :value="category_post.category_id">{{ category_post.section_title }} - {{ category_post.title }}</option>
@@ -334,6 +335,35 @@
             }
         },
         methods: {
+            async getRegionsCommunes() {
+                try {
+                    const response = await axios.get('/api/section_region/' + this.form.section_id + '/edit?api_token='+App.apiToken);
+
+                    this.stored_regions = response.data.data;
+
+                    this.loading = false;
+
+                    const selectedRegionIds = this.stored_regions.map(item => item.region_id);
+                    this.form.region_id = selectedRegionIds;
+                } catch (error) {
+                    console.error(error);
+                }
+
+                try {
+                    const response = await axios.get('/api/section_commune/' + this.form.section_id + '/edit?api_token='+App.apiToken);
+
+                    this.stored_communes = response.data.data;
+
+                    this.loading = false;
+
+                    const selectedCommuneIds = this.stored_communes.map(item => item.commune_id);
+                    this.form.commune_id = selectedCommuneIds;
+
+                    console.log(this.form.commune_id);
+                } catch (error) {
+                    console.error(error);
+                }
+            },
             getRols() {
                 axios.get('/api/user/rol?api_token=' + App.apiToken)
                     .then(response => {
