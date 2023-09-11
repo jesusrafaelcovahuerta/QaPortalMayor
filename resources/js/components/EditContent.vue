@@ -529,6 +529,7 @@
                     this.form.commune_id = selectedCommuneIds;
 
                     console.log(this.form.commune_id);
+                    alert(this.form.commune_id)
                 } catch (error) {
                     console.error(error);
                 }
